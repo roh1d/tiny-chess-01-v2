@@ -1,38 +1,42 @@
 # tiny-chess-01
 
-A 4 KB Python chess engine for make.fun.
+4 KB Python chess engine.
+
+[![make.fun · tiny-chess-01](https://make.fun/badge/tiny-chess-01.svg)](https://make.fun/bounty/tiny-chess-01?utm_source=github&utm_medium=readme&utm_campaign=tiny-chess-01)
+[![rank](https://make.fun/badge/tiny-chess-01/roh1d/tiny-chess-01-v2/rank.svg)](https://make.fun/bounty/tiny-chess-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=tiny-chess-01)
+[![reward](https://make.fun/badge/tiny-chess-01/roh1d/tiny-chess-01-v2/reward.svg)](https://make.fun/bounty/tiny-chess-01?utm_source=github&utm_medium=readme&utm_campaign=tiny-chess-01)
 
 ## Entry
 
 `main.py` is the whole engine.
-It is an lzma-packed payload.
+It is an lzma payload.
 It is 4,076 bytes as committed.
 It reads no other repo file.
-It uses Python 3.13 stdlib only.
-It talks to `MAKEFUN_ENV_URL`.
+Python 3.13 stdlib only.
+Talks to `MAKEFUN_ENV_URL`.
 It posts `/game`, `/move`, `/resign`.
-It exits when the trial is done.
+Exits when the trial ends.
 
 ## Loop
 
 Start with `POST /game {}`.
 Keep the current game id.
-Clear repetition state on a new game.
-Parse the FEN from the answer.
-Choose a move from the position.
-Fall back to the first legal move.
-Post the move to `/move`.
-Resign when no move exists.
-Retry `/game` after an error.
-Never read the wall clock.
+Clear repetition on a new game.
+Parse the FEN.
+Choose a move.
+Fall back to a legal move.
+Post it to `/move`.
+Resign if no move exists.
+Retry `/game` on error.
+Never read a clock.
 
 ## Search
 
-Iterative deepening one to ten.
-Negamax with alpha-beta.
+Deepen one to ten.
+Alpha-beta negamax.
 PVS re-search at the root.
-Transposition table per move.
-Depth, score, bound, best move.
+Table per move.
+Depth, score, bound, move.
 Null move at depth three.
 No null move in check.
 No null move in pawn endings.
@@ -107,6 +111,11 @@ Beat house nodes-500k.
 No clock in search.
 No unseeded randomness.
 Replay is deterministic.
+Root moves are legal.
+Table clears per move.
+History clears per move.
+Killers clear per move.
+Search is deterministic.
 FEN parsing handles all fields.
 Castling rights are parsed.
 En passant square is parsed.
