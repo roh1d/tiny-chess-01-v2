@@ -10,7 +10,7 @@
 
 `main.py` is the whole engine.
 It is an lzma payload.
-It is 4,076 bytes as committed.
+It is 3,985 bytes as committed.
 It reads no other repo file.
 Python 3.13 stdlib only.
 Talks to `MAKEFUN_ENV_URL`.
@@ -47,7 +47,7 @@ Quiescence searches checks.
 Mate scores adjust by ply.
 Repetition scores zero.
 Fifty-move scores zero.
-Stop at 50,000 nodes.
+Stop at 70,000 nodes.
 Node limit makes replay exact.
 Root reuses prior scores.
 Bounds keep the best move.
